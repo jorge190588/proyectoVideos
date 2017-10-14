@@ -1,9 +1,9 @@
 {
     "mysql" :{
-        "host": "http://34.224.173.168/",
+        "host": "localhost",
         "port": 3306,
         "user": "root",
-        "password": "web",
+        "password": "",
         "database": "ranking_videos"
     }
 }

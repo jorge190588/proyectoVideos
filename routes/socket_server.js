@@ -36,7 +36,8 @@ exports.handle = function(server,sessionMiddleware){
                         let row = message[msg];
                         var message_custom = {
                             message: row.message,
-                            date_at: moment(row.fecha).fromNow()
+                            date_at: moment(row.fecha).fromNow(),
+                            name: row.name
                         }
                         socket.emit('messageReceived',message_custom);
                     }
@@ -55,7 +56,8 @@ exports.handle = function(server,sessionMiddleware){
                 if(!error){
                     var message_custom = {
                         message: message.message,
-                        date_at: moment(message.date_at).fromNow()
+                        date_at: moment(message.date_at).fromNow(),
+                        name: socket.request.session.name
                     };
                     io.sockets.emit('messageReceived', message_custom);
                 }

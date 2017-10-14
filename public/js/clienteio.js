@@ -24,7 +24,7 @@ function sendMessage(e){
 
 io.on('messageReceived', function(message){
     console.log(message);
-    var html = `<span class="messages">${message.message} <span class="time">${message.date_at}</span></span>`;
+    var html = `<p>${message.name}</p><span class="messages">${message.message} <span class="time">${message.date_at}</span></span>`;
     $('#messages').prepend(html);
     //append agrega datos al final
     //prepend agrega datos al inicio

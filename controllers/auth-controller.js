@@ -35,7 +35,7 @@ class AuthController{
                 if(data.length != 0){
                     request.session.username = (data.length != 0) ? user.email : null;
                     request.session.id_auth = (data.length != 0) ? data[0].id : null;
-                    request.session.full_name = (data.length != 0) ? `${data[0].name} ${data[0].last_name}` : null;
+                    request.session.name = (data.length != 0) ? `${data[0].name}` : null;
                     //console.log(request.session, '---', data);
                     if(request.session.username){                        
                         response.redirect('/inicio');                        
