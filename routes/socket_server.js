@@ -32,6 +32,7 @@ exports.handle = function(server,sessionMiddleware){
         function showMessages(){
             messageModel.showMessages((error, message)=>{
                 if(!error){
+                    console.log(message);
                     for(var msg in message){
                         let row = message[msg];
                         var message_custom = {
@@ -39,6 +40,7 @@ exports.handle = function(server,sessionMiddleware){
                             date_at: moment(row.fecha).fromNow(),
                             name: row.name
                         }
+                        console.log(message_custom);
                         socket.emit('messageReceived',message_custom);
                     }
                 }
