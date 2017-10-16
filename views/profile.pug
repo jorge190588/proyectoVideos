@@ -27,12 +27,13 @@ block content
         div.row
             div(class=['col-xs-12','col-sm-4'])
                 h1.text-success Perfíl
+                img(src=`/image/avatars/${data_user[0].avatar}`)
                 p 
                     strong Nombre: 
-                    span Elvin Morales
+                    span #{data_user[0].name} #{data_user[0].last_name}
                 p 
                     strong Correo: 
-                    span #{user}
+                    span #{data_user[0].email}
                 h2.text-info Acerca de mí
                 div.well
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem laudantium non quos perspiciatis labore saepe maxime omnis, enim aliquam quasi natus vitae debitis voluptatum tempore, ut voluptas itaque reprehenderit fugiat.

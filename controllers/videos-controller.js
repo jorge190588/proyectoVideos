@@ -3,7 +3,8 @@
 const   videosModel     = require('../models/videos-model'),
         errors          = require('../middlewares/errors'),
         ratingModel     = require('../models/rating-model'), 
-        commentModel    = require('../models/comments-model');
+        commentModel    = require('../models/comments-model'),
+        authModel       = require('../models/auth-model');
 
 
 
@@ -108,11 +109,16 @@ class VideosController{
         return (request.session.username)
             ?   videosModel.getAllVideosByUser(id_auth, (error, data) => {
                     if(!error){
-                        response.render('profile',{
-                            title: 'Perfil - Publicaciones',
-                            user: request.session.username,
-                            data: data
-                        });
+                        authModel.getOneUser(id_auth,(error, user)=>{
+                            if(!error){
+                                response.render('profile',{
+                                    title: 'Perfil - Publicaciones',
+                                    user: request.session.username,
+                                    data_user: user,
+                                    data: data
+                                });
+                            }
+                        })
                     }
                 })
             :   errors.http401(request, response, next);
@@ -127,7 +133,7 @@ class VideosController{
             id_auth : parseInt(request.body.id_auth),
             id_categoria : parseInt(request.body.categoria)
         };
-        let options = {
+        /*let options = {
             resource: {
                 snippet: {
                     title: video.titulo,
@@ -141,7 +147,7 @@ class VideosController{
             media: {
                 body: fs.createReadStream('video.mp4')
             }
-        };
+        };*/
         console.log(video);
         return (request.session.username)
             ?   videosModel.save(video, (error) => {
@@ -154,7 +160,7 @@ class VideosController{
             :   errors.http401(request, response, next);
     }
 
-    uploadYouTube(myTitle, myDescription, myFileLocation){
+    /*uploadYouTube(myTitle, myDescription, myFileLocation){
         var req = youtube.videos.insert({
             resource: {
                 snippet: {
@@ -174,7 +180,7 @@ class VideosController{
             process.exit();
         });
         return req;
-    }
+    }*/
 
     delete(request, response, next){
         let id = request.params.id;

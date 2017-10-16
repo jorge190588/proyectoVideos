@@ -32,15 +32,13 @@ exports.handle = function(server,sessionMiddleware){
         function showMessages(){
             messageModel.showMessages((error, message)=>{
                 if(!error){
-                    console.log(message);
                     for(var msg in message){
                         let row = message[msg];
                         var message_custom = {
                             message: row.message,
                             date_at: moment(row.fecha).fromNow(),
                             name: row.name
-                        }
-                        console.log(message_custom);
+                        };
                         socket.emit('messageReceived',message_custom);
                     }
                 }
@@ -95,7 +93,6 @@ exports.handle = function(server,sessionMiddleware){
                         fecha_at: moment(comment.fecha_at).fromNow(),
                         mensaje: comment.mensaje
                     };
-                    console.log('comentario: ', mensaje_personalizado)
                     io.sockets.emit('commentReceived', mensaje_personalizado);
                 }
             });

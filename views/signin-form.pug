@@ -21,6 +21,16 @@ block content
                                         label Apellido(s)*
                                         input(type="text",class="form-control", name="last_name", placeholder="Apellido(s)", required)
                             div.form-group
+                                label Género*
+                                div.input-group
+                                    span.input-group-addon
+                                        input(type="radio" name="gender" value=1)
+                                    input(type="text" class="form-control" value="Hombre" disabled)
+                                div.input-group
+                                    span.input-group-addon
+                                        input(type="radio" name="gender" value=0)
+                                    input(type="text" class="form-control" value="Mujer" disabled)
+                            div.form-group
                                 label Correo Electrónico*
                                 div.input-group
                                     span(class=['input-group-addon'])

@@ -56,10 +56,21 @@ class AuthController{
 
     //metodo para insertar los registros recopilados a la db
     signInPost(request, response, next){
+        let avatar = '';
+        let gender = '';
+        if(parseInt(request.body.gender) == 1){
+            avatar = 'male.png';
+            gender = 'Hombre';
+        }else{
+            avatar = 'female.png';
+            gender = 'Mujer';
+        }
         let user = {
             id : 0,
             name : request.body.name,
             last_name : request.body.last_name,
+            gender : gender,
+            avatar : avatar,
             email : request.body.email,
             password : request.body.password
         };
