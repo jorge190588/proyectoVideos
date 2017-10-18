@@ -11,7 +11,7 @@ CREATE TABLE auth(
     gender VARCHAR(25) NOT NULL,
     avatar VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
-    password VARCHAR(150) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     fecha_registro timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

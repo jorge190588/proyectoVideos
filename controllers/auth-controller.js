@@ -2,7 +2,14 @@
 
 let authModel = require('../models/auth-model'),
     errors  = require('../middlewares/errors'),
-    express = require('express');
+    express = require('express'),
+    crypto = require('crypto');
+
+function encriptar(user, pass) {
+   // usamos el metodo CreateHmac y le pasamos el parametro user y actualizamos el hash con la password
+   var hmac = crypto.createHmac('sha1', user).update(pass).digest('hex')
+   return hmac
+}
 
 class AuthController{
 
@@ -26,9 +33,10 @@ class AuthController{
 
     //Metodo para loguearse en el sistema
     logInPost(request, response, next){
+        let cryptoPassword = encriptar(request.body.email,request.body.password);
         let user = {
             email : request.body.email,
-            password : request.body.password
+            password : cryptoPassword
         };
         authModel.getUser(user, (error, data) => {
             if(!error){
@@ -60,6 +68,7 @@ class AuthController{
     signInPost(request, response, next){
         let avatar = '';
         let gender = '';
+        let cryptoPassword = encriptar(request.body.email,request.body.password);
         if(parseInt(request.body.gender) == 1){
             avatar = 'male.png';
             gender = 'Hombre';
@@ -74,9 +83,8 @@ class AuthController{
             gender : gender,
             avatar : avatar,
             email : request.body.email,
-            password : request.body.password
+            password : cryptoPassword
         };
-        console.log(user);
         authModel.setUser(user, (error) => {
             if(!error){
                 response.redirect(`/?message=El registro ha sido creado exitosamente`);
