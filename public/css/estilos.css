@@ -157,6 +157,10 @@ body{
     font-size: 20px;
     text-align: center;
     padding: 20px;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .muro-white{
@@ -302,6 +306,12 @@ body{
 .btn-signin:hover{
     background-color: #16a085;
     color: white;
+}
+
+.app-login{
+    background: #00587A;
+    color: white;
+    text-align: center;
 }
 
 /*float button*/
