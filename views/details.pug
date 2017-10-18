@@ -51,12 +51,10 @@ block content
                                         input(type='radio', name='rating', value='5')
                                         i
                             div.col-xs-12.col-sm-4
-                                div.row
-                                    div.col-xs-12.col-sm-8
-                                        h3.text-right
-                                            strong Cantidad de estrellas obtenidas
-                                    div.col-xs-12.col-sm-4
-                                        h1(id='total_votos')
+                                div.text-right
+                                    h3                                    
+                                        strong Total de votos 
+                                        span(id='total_votos')
                                             - var votos = data[0].votos
                                             if(votos == null)
                                                 span.label.label-success 0
@@ -85,7 +83,7 @@ block content
                             form(onsubmit="return sendComment(this)")
                                 input(type='hidden', id='id_video_comment', value=data[0].id_video, name="id_video_comment")
                                 input(type="hidden", id='id_auth_comment', value=id_auth, name="id_auth_comment")
-                                input(type="hidden", id="full_name", value=full_name)
+                                input(type="hidden", id="full_name", value=full_name, name="full_name")
                                 div.form-group
                                     label(for='comment')
                                     textarea(class='form-control', rows="3", cols="20", name="comment", id="comment")

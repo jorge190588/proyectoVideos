@@ -13,7 +13,7 @@ block content
                     input(type="hidden", value=id_auth, name="id_auth")
                     div(id="masDatos", style="display: none")
                         div.row
-                            div.col-xs-12.col-sm-8.col-sm-offset-3
+                            div.col-xs-12.col-sm-8.col-sm-offset-2
                                 div(class=['panel','panel-default'])
                                     div(class="panel-heading")
                                         button(type="button", class=['btn','btn-primary','btn-xs'], id="btn_back_categoria") Regresar
@@ -23,7 +23,7 @@ block content
                                         div.form-group
                                             textarea(class="form-control", placeholder="Ingrese la descripción", rows="3" name="descripcion" required)
                                         div.form-group
-                                            input(type="text", class="form-control", placeholder="Id de video youtube", name="urlVideo" required)
+                                            input(type="text", class="form-control", placeholder="URL o ID del video en youtube.com", name="urlVideo" required)
                                     div(class="panel-footer")
                                         input(type="submit", value="Guardar", class=['btn','btn-success'])
                     div(id="soloCategorias",style="margin-top:-2em")

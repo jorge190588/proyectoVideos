@@ -152,30 +152,17 @@ class VideosController{
     }
 
     save(request, response, next){
+        let ID_youtube;
+        ID_youtube = request.body.urlVideo.split('=').pop();        
+        
         let video = {
             id : parseInt((request.body.id || 0)),
             titulo : request.body.titulo,
             descripcion : request.body.descripcion,
-            url : request.body.urlVideo,
+            url : ID_youtube,
             id_auth : parseInt(request.body.id_auth),
             id_categoria : parseInt(request.body.categoria)
         };
-        /*let options = {
-            resource: {
-                snippet: {
-                    title: video.titulo,
-                    description: video.descripcion
-                },
-                status: {
-                    privacyStatus: 'private'
-                }
-            },
-            part: 'snippet, status',
-            media: {
-                body: fs.createReadStream('video.mp4')
-            }
-        };*/
-        console.log(video);
         return (request.session.username)
             ?   videosModel.save(video, (error) => {
                     if(!error){

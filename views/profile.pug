@@ -57,12 +57,14 @@ block content
                             if(data.length)
                                 each video in data
                                     div(class=["col-sm-4"])
-                                        div(class=["panel","panel-success"])
+                                        div(class=["panel","panel-primary"])
                                             div(class=["panel-heading"])
-                                                h4(class="media-heading") #{video.titulo}
+                                                h5(class="media-heading") #{video.titulo}
                                             div(class="panel-body")
-                                                a(href="")
-                                                    img(class=["media-object","object-left"], width="64px",height="64px" src=`https://i.ytimg.com/vi/${video.url}/0.jpg`, alt="Vista previa")
+                                                center
+                                                    a(href="")
+                                                        img(class=["media-object","object-left"], width="64px",height="64px" src=`https://i.ytimg.com/vi/${video.url}/0.jpg`, alt="Vista previa")
+                                                hr
                                                 p #{video.descripcion}
                                             div(class=["panel-footer"])
                                                 form(method="post", class="form-inline", action="/eliminar/" + video.id)
