@@ -4,14 +4,14 @@ const   videosModel     = require('../models/videos-model'),
         errors          = require('../middlewares/errors'),
         ratingModel     = require('../models/rating-model'), 
         commentModel    = require('../models/comments-model'),
-        authModel       = require('../models/auth-model');
+        authModel       = require('../models/auth-model'),
+        fs              = require('fs');
 
 
 
 //librerias necesarias para la api de youtube
 const   google = require('googleapis'), //requerimos googleapis
-        OAuth2 = google.auth.OAuth2,
-        fs = require('fs'); //Definimos OAuth2
+        OAuth2 = google.auth.OAuth2; //Definimos OAuth2
 
 //login a google
 const oauth2Client = new OAuth2(
@@ -50,6 +50,7 @@ class VideosController{
                         response.render('index', {
                             title: 'Ranking Videos',
                             user : request.session.username,
+                            avatar : request.session.avatar,
                             data: data
                         });
                     }
@@ -66,6 +67,7 @@ class VideosController{
                         response.render('edit',{
                             title: 'Editar video',
                             user: request.session.username,
+                            avatar : request.session.avatar,
                             id_auth: request.session.id_auth,
                             data: data
                         });
@@ -88,6 +90,7 @@ class VideosController{
                                         response.render('details',{
                                             title: 'Publicación con lujo de detalle',
                                             user: request.session.username,
+                                            avatar : request.session.avatar,
                                             id_auth: id_user,
                                             full_name: request.session.full_name,
                                             data: data,
@@ -114,14 +117,38 @@ class VideosController{
                                 response.render('profile',{
                                     title: 'Perfil - Publicaciones',
                                     user: request.session.username,
+                                    avatar : request.session.avatar,
                                     data_user: user,
-                                    data: data
+                                    data: data,
+                                    error_image: request.query.error_image
                                 });
                             }
                         })
                     }
                 })
             :   errors.http401(request, response, next);
+    }
+
+    uploadAvatar(request, response, next){
+        let formidable = require('formidable');
+        var form = new formidable.IncomingForm();
+        let avatar, name, extension;
+        //form.uploadDir = './public/image/avatars/';
+        form.keepExtensions = true;
+        form.parse(request, (error, fields, files)=>{
+            name = files.avatar.name.split(".").shift();
+            extension = files.avatar.name.split(".").pop();
+            avatar = `${name}${fields.id_auth}.${extension}`;
+            if(files.avatar.type == 'image/png' || files.avatar.type == 'image/jpg' || files.avatar.type == 'image/jpeg'){
+                authModel.updateAvatar(avatar,fields.id_auth, (error)=>{
+                    fs.rename(files.avatar.path, './public/image/avatars/'+avatar);
+                    response.redirect('/perfil');
+                });
+            }else{
+                response.redirect('/perfil?error_image=Seleccione una imagen válida!!');
+            }
+
+        });
     }
 
     save(request, response, next){
@@ -203,6 +230,7 @@ class VideosController{
                         response.render('add',{
                             title: 'Agregar nuevo video',
                             user: request.session.username,
+                            avatar : request.session.avatar,
                             id_auth: request.session.id_auth,
                             data: data
                         });
@@ -246,4 +274,4 @@ class VideosController{
     }   
 }
 
-module.exports = VideosController;
+module.exports = new VideosController;

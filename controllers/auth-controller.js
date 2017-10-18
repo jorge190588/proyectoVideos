@@ -36,6 +36,7 @@ class AuthController{
                     request.session.username = (data.length != 0) ? user.email : null;
                     request.session.id_auth = (data.length != 0) ? data[0].id : null;
                     request.session.name = (data.length != 0) ? `${data[0].name}` : null;
+                    request.session.avatar = (data.length != 0) ? `${data[0].avatar}` : null;
                     //console.log(request.session, '---', data);
                     if(request.session.username){                        
                         response.redirect('/inicio');                        
@@ -97,6 +98,7 @@ class AuthController{
             response.render('chatUsersOnline',{
                 title: 'Mensajeria',
                 user: request.session.username,
+                avatar : request.session.avatar,
                 id_auth: request.session.id_auth
             });
         }else{

@@ -1,21 +1,6 @@
 extends layout.pug
 block content
     include templates/nav
-    section(class="app-subirvideo")
-        div.container
-            div.row
-                div(class=['hidden-xs','col-sm-6'])
-                    div(class=['app-datos'])
-                        div(class=['gl-usuario'])
-                            span(class=['glyphicon glyphicon-user'])
-                            span  Usuarios conectados: 
-                                span(id="usuarios_conectados" class="badge")
-                        div(class=['gl-archivos'])
-                            span(class=['glyphicon glyphicon-upload'])
-                            span  Publicaciones: 
-                                span(id="videos_subidos" class="badge")
-                div(class=['col-xs-12','col-sm-offset-2','col-sm-4'])
-                    a.button.add(href="/agregar", type="button", class=['btn','btn-subirvideo','btn-block','btn-lg']) Subir video
     div.container
         div.row
             div(class=['col-xs-12'])
@@ -26,21 +11,24 @@ block content
                     li.active #{user}
         div.row
             div(class=['col-xs-12','col-sm-4'])
-                h1.text-success Perfíl
-                img(src=`/image/avatars/${data_user[0].avatar}`)
-                p 
-                    strong Nombre: 
-                    span #{data_user[0].name} #{data_user[0].last_name}
-                p 
-                    strong Correo: 
-                    span #{data_user[0].email}
-                h2.text-info Acerca de mí
+                h2.text-success Mi Perfíl
                 div.well
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem laudantium non quos perspiciatis labore saepe maxime omnis, enim aliquam quasi natus vitae debitis voluptatum tempore, ut voluptas itaque reprehenderit fugiat.
-                h2.text-warning Habilidades
-                div.well
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem laudantium non quos perspiciatis labore saepe maxime omnis, enim aliquam quasi natus vitae debitis voluptatum tempore, ut voluptas itaque reprehenderit fugiat.
+                    center
+                        figure
+                            img(src=`/image/avatars/${data_user[0].avatar}` class="img-responsive img-thumbnail avatar")
+                    h2.text-center
+                        span #{data_user[0].name} #{data_user[0].last_name}
+                    hr
+                    p 
+                        span.glyphicon.glyphicon-envelope 
+                        span 
+                        span #{data_user[0].email}
             div(class=['col-xs-12','col-sm-8'])
+                if(error_image)
+                    div(role="alet").alert.alert-danger
+                        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                        strong #{error_image}
                 //Nav tabs
                 ul(class=['nav','nav-tabs','nav-justified'])
                     li(role="presentation", class="active")
@@ -61,7 +49,10 @@ block content
                 //Tab panels
                 div.tab-content
                     div(class=['tab-pane','fade','in','active'], id="videos")
-                        br
+                        a.button.add(href="/agregar", type="button", class=['btn','btn-subirvideo','btn-block','btn-lg']) 
+                            span(class=['glyphicon glyphicon-upload']) 
+                            span 
+                            span Subir video
                         article                    
                             if(data.length)
                                 each video in data
@@ -83,3 +74,11 @@ block content
                         h1 Notificaciones
                     div(class=['tab-pane','fade'], id="configuraciones")
                         h1 Configuraciones
+                        form(method='post' action='/upload_avatar' enctype='multipart/form-data')
+                            input(type="hidden" name="id_auth" value=data_user[0].id)
+                            div.form-group
+                                label Avatar
+                                input(type='file' name='avatar' id='avatar' class='form-control')
+                            div.row.top-space
+                                div.col-xs-12.col-sm-6
+                                    input(type='submit' value='Guardar' class='btn btn-info')

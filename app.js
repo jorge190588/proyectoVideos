@@ -28,7 +28,7 @@ app
         .set('views', viewDir)
         .set('view engine', 'pug')
         .set('port', port)
-        
+
         .use(sessionMiddleware)
         .use(bodyParser.json())
         .use(bodyParser.urlencoded({ extended: false }))
