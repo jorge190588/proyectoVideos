@@ -8,7 +8,7 @@ const   videosModel     = require('../models/videos-model'),
         fs              = require('fs');
 
 
-
+/*
 //librerias necesarias para la api de youtube
 const   google = require('googleapis'), //requerimos googleapis
         OAuth2 = google.auth.OAuth2; //Definimos OAuth2
@@ -36,7 +36,7 @@ function renderizar(response, view, args){
         view, args
     );
 }
-
+*/
 function UpdateVisits(id_video){    
     videosModel.updateVisitas(id_video);
 }
@@ -154,7 +154,7 @@ class VideosController{
     save(request, response, next){
         let ID_youtube;
         ID_youtube = request.body.urlVideo.split('=').pop();        
-        
+        console.log('Id youtube: ',ID_youtube);
         let video = {
             id : parseInt((request.body.id || 0)),
             titulo : request.body.titulo,
@@ -163,6 +163,7 @@ class VideosController{
             id_auth : parseInt(request.body.id_auth),
             id_categoria : parseInt(request.body.categoria)
         };
+        console.log('video: ',video);
         return (request.session.username)
             ?   videosModel.save(video, (error) => {
                     if(!error){

@@ -1,9 +1,5 @@
 var io = io();
 
-io.on('usersOnline', function(contador){
-    document.querySelector('#usersOnline').innerHTML = contador.usersOnline;
-});
-
 io.on('videosSubidos', function(data){
     document.querySelector('#videos_subidos').innerHTML = data;
 });
