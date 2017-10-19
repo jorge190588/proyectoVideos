@@ -9,7 +9,7 @@ router
     .get('/agregar', videosController.addForm)
     .post('/inicio', videosController.save)
     .get('/editar/:id', videosController.getOne)
-    .post('/actualizar/:id', videosController.save)
+    .post('/actualizar', videosController.save)
     .post('/eliminar/:id', videosController.delete)
     .get('/detalles/:id', videosController.getDetails)
     .get('/perfil', videosController.getProfile)

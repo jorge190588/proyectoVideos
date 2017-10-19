@@ -62,13 +62,14 @@ block content
                                                 h5(class="media-heading") #{video.titulo}
                                             div(class="panel-body")
                                                 center
-                                                    a(href="")
+                                                    a(href="/detalles/"+video.id)
                                                         img(class=["media-object","object-left"], width="64px",height="64px" src=`https://i.ytimg.com/vi/${video.url}/0.jpg`, alt="Vista previa")
                                                 hr
                                                 p #{video.descripcion}
                                             div(class=["panel-footer"])
                                                 form(method="post", class="form-inline", action="/eliminar/" + video.id)
                                                     a(class=['btn','btn-primary','btn-sm'], href="/editar/" + video.id) Editar
+                                                    span 
                                                     input(type="button", class=['btn','btn-danger','btn-sm'], value="Eliminar", onclick="eliminar(this)")
                             else
                                 div(role="alert").alert.alert-info No hay datos que mostrar

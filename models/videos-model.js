@@ -39,7 +39,7 @@ class VideosModel{
         connection.query('SELECT * FROM videos WHERE id = ?', data.id, (error, rows) => {
             if(!error){
                 return (rows.length == 1)
-                    ? connection.query('UPDATE videos SET ? WHERE id = ?',[data, data.id], cb)
+                    ? connection.query('UPDATE videos SET titulo=?, descripcion=?, url=? WHERE id=?',[data.titulo,data.descripcion,data.url,data.id], cb)
                     : connection.query('INSERT INTO videos SET ?',data, cb);
             }
         });
