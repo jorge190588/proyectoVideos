@@ -157,10 +157,6 @@ body{
     font-size: 20px;
     text-align: center;
     padding: 20px;
-    clear: both;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 .muro-white{
