@@ -38,7 +38,6 @@ class AuthController{
             email : request.body.email,
             password : cryptoPassword
         };
-        console.log('login: ',user);
         authModel.getUser(user, (error, data) => {
             if(!error){
                 if(data.length != 0){
@@ -70,7 +69,6 @@ class AuthController{
         let avatar = '';
         let gender = '';
         let cryptoPassword = encriptar(request.body.email,request.body.password);
-        console.log('pw encriptada: ',cryptoPassword);
         if(parseInt(request.body.gender) == 1){
             avatar = 'male.png';
             gender = 'Hombre';
@@ -87,7 +85,6 @@ class AuthController{
             email : request.body.email,
             password : cryptoPassword
         };
-        console.log('User: ',user);
         authModel.setUser(user, (error) => {
             if(!error){
                 response.redirect(`/?message=El registro ha sido creado exitosamente`);

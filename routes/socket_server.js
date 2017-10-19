@@ -25,7 +25,6 @@ exports.handle = function(server,sessionMiddleware){
 
         contador = nicknames.length;
         
-        console.log('nicknames: ',nicknames);
         socket.emit('usersOnline',{usersOnline : contador});
         socket.broadcast.emit('usersOnline',{usersOnline : contador});
 

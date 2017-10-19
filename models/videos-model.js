@@ -37,7 +37,6 @@ class VideosModel{
     save(data, cb)
     {
         connection.query('SELECT * FROM videos WHERE id = ?', data.id, (error, rows) => {
-            console.log(`Número de registros: ${rows.length}`);
             if(!error){
                 return (rows.length == 1)
                     ? connection.query('UPDATE videos SET ? WHERE id = ?',[data, data.id], cb)

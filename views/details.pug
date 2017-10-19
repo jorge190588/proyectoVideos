@@ -99,10 +99,7 @@ block content
                     br.hidden-xs
                     br
                     ul(class=['media-list'] id="comments")
-                        if(comments.length == 0)
-                            div.well.muro-white
-                                p No hay comentarios
-                        else
+                        if(comments.length != 0)
                             each messageData in comments
                                 li(class=['media media1'])
                                     div(class=['media-body'])

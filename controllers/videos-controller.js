@@ -60,7 +60,6 @@ class VideosController{
 
     getOne(request, response, next){
         let id = request.params.id;
-        console.log(id);
         return (request.session.username)
             ?   videosModel.getOne(id, (error, data)=>{
                     if(!error){
@@ -154,7 +153,6 @@ class VideosController{
     save(request, response, next){
         let ID_youtube;
         ID_youtube = request.body.urlVideo.split('=').pop();        
-        console.log('Id youtube: ',ID_youtube);
         let video = {
             id : parseInt((request.body.id || 0)),
             titulo : request.body.titulo,
@@ -163,7 +161,6 @@ class VideosController{
             id_auth : parseInt(request.body.id_auth),
             id_categoria : parseInt(request.body.categoria)
         };
-        console.log('video: ',video);
         return (request.session.username)
             ?   videosModel.save(video, (error) => {
                     if(!error){
@@ -233,7 +230,6 @@ class VideosController{
             id_auth : request.body.id_auth,
             id_video : request.body.id_video
         };
-        console.log(datos);
         ratingModel.votar(datos, (error)=>{
             if(!error){
                 ratingModel.getRateAllVideo(datos.id_video, (err, allVotos)=>{
