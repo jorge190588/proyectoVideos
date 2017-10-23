@@ -17,9 +17,6 @@ block content
                     li.active Detalles - #{data[0].titulo}
                 div(class="page-header")
                     h1= data[0].titulo
-                    h3
-                        span.label.label-danger visitas
-                            span(class=['label']) #{data[0].visitas}
                 div.thumbnail
                     div(class=['embed-responsive','embed-responsive-16by9'])
                         iframe(class=['embed-responsive-item'], src=`https://www.youtube.com/embed/${data[0].url}`)
@@ -52,14 +49,15 @@ block content
                                         i
                             div.col-xs-12.col-sm-4
                                 div.text-right
-                                    h3                                    
-                                        strong Total de votos 
-                                        span(id='total_votos')
-                                            - var votos = data[0].votos
-                                            if(votos == null)
-                                                span.label.label-success 0
-                                            else
-                                                span.label.label-success #{data[0].votos}
+                                    h3
+                                        a(href="/video/votos/"+data[0].id_video class="btn btn-default btn-lg")
+                                            strong Total de votos 
+                                            span(id='total_votos')
+                                                - var votos = data[0].votos
+                                                if(votos == null)
+                                                    span.label.label-success 0
+                                                else
+                                                    span.label.label-success #{data[0].votos}
                 div(class="well")
                     h3
                         span.glyphicon.glyphicon-user
@@ -69,7 +67,12 @@ block content
                         span.glyphicon.glyphicon-time
                         span 
                         strong
-                            span= moment(data[0].fecha_publicacion).fromNow()
+                            span= moment(data[0].fecha_publicacion).fromNow() 
+                        span 
+                        span -- 
+                        span.glyphicon.glyphicon-eye-open
+                        span 
+                        span(class=['label label-default']) #{data[0].visitas}
                     strong
                         p.text-danger Descripción: 
                     p #{data[0].descripcion}

@@ -46,6 +46,13 @@ body{
     width:106px;
 }
 
+.avatar_ratingOfUsers{
+    height:24px;
+    width:24px;
+    float: left;
+    margin-right: 0.5em;
+}
+
 .app-bar{
     background: white;
 }

@@ -15,6 +15,7 @@ router
     .get('/perfil', videosController.getProfile)
     .post('/calificar', videosController.calificarVideo)
     .post('/comentar', videosController.comentarVideo)
-    .post('/upload_avatar', videosController.uploadAvatar);
+    .post('/upload_avatar', videosController.uploadAvatar)
+    .get('/video/votos/:id_video', videosController.getAllUsersWhoHaveRated);
     
 module.exports = router;

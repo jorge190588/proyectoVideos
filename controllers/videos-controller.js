@@ -105,6 +105,21 @@ class VideosController{
                 })
             :   errors.http401(request, response, next);
     }
+
+    getAllUsersWhoHaveRated(request, response, next){
+        let id_video = request.params.id_video;
+        ratingModel.getAllUsersWhoHaveRated(id_video, (error, votos)=>{
+            if(!error){
+                response.render('ratingOfUsers', {
+                    title: 'Calificación de los usuarios',
+                    user: request.session.username,
+                    avatar : request.session.avatar,
+                    id_video: id_video,
+                    data: votos
+                });
+            }
+        });
+    }
     
     getProfile(request, response, next){
         let id_auth = request.session.id_auth;
