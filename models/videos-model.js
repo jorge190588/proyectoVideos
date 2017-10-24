@@ -7,10 +7,11 @@ class VideosModel{
     //metodo para obtener todos los videos con el total de votos, visitas y comentarios obtenidos
     getAll(cb)
     {
-        connection.query('SELECT *, '+
+        connection.query('SELECT v.id, v.titulo, v.descripcion, v.url, v.fecha_publicacion, v.visitas, c.descripcion categoria, '+
         '(SELECT SUM(r.votos) FROM rating r WHERE r.id_video=v.id) votos, '+
         '(SELECT COUNT(c.id) FROM comments c WHERE c.id_video=v.id) comentarios '+
         'FROM videos v '+
+        'INNER JOIN categorias c ON v.id_categoria=c.id '+
         'WHERE titulo LIKE "%%" '+
         'ORDER BY votos DESC, v.visitas DESC, v.id DESC', cb);
     }
@@ -24,12 +25,14 @@ class VideosModel{
     //metodo para consultar el detalle de un video segun su id
     getOne(id, cb)
     {
-        connection.query('SELECT v.id id_video, titulo, descripcion, url, fecha_publicacion, visitas, '+
+        connection.query('SELECT v.id id_video, v.titulo, v.descripcion, v.url, v.fecha_publicacion, v.visitas, '+
         '(SELECT SUM(r.votos) FROM rating r WHERE r.id_video=v.id) votos, '+
-        'name, '+
-        'last_name '+
+        'a.name, '+
+        'a.last_name, '+
+        'c.descripcion categoria '+
         'FROM videos v '+
         'INNER JOIN auth a ON v.id_auth=a.id '+
+        'INNER JOIN categorias c ON v.id_categoria=c.id '+
         'WHERE v.id = ?', id, cb);
     }
 

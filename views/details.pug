@@ -73,13 +73,17 @@ block content
                         span.glyphicon.glyphicon-eye-open
                         span 
                         span(class=['label label-default']) #{data[0].visitas}
+                    h4
+                        span.glyphicon.glyphicon-tags
+                        span 
+                        span.label.label-primary #{data[0].categoria}
                     strong
                         p.text-danger Descripción: 
                     p #{data[0].descripcion}
                 div(class="well comentarios")
                     div.page-header 
                         h1 Comentarios 
-                            small Que tú comentario sea constructivo para el usuario
+                            small Que tú comentario sea positivo
                     //********************Formulario para los comentarios*********************
                     div.row
                         div.col-xs-12.col-sm-6.col-sm-offset-3

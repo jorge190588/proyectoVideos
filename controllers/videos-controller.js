@@ -47,11 +47,16 @@ class VideosController{
         return (request.session.username)
             ?   videosModel.getAll((error, data) => {
                     if(!error){
-                        response.render('index', {
-                            title: 'Ranking Videos',
-                            user : request.session.username,
-                            avatar : request.session.avatar,
-                            data: data
+                        videosModel.getAllCategorias((err, categorias)=>{
+                            if(!err){
+                                response.render('index', {
+                                    title: 'Ranking Videos',
+                                    user : request.session.username,
+                                    avatar : request.session.avatar,
+                                    data: data,
+                                    categorias: categorias
+                                });
+                            }
                         });
                     }
                 })
