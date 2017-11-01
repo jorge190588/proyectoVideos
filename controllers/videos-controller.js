@@ -44,8 +44,15 @@ function UpdateVisits(id_video){
 class VideosController{  
     
     getAll(request, response, next){
+        let search = '';
+        if(request.query.search){
+            search = request.query.search;
+        }else{
+            search = '';
+        }
+        
         return (request.session.username)
-            ?   videosModel.getAll((error, data) => {
+            ?   videosModel.getAll(search,(error, data) => {
                     if(!error){
                         videosModel.getAllCategorias((err, categorias)=>{
                             if(!err){
@@ -54,7 +61,8 @@ class VideosController{
                                     user : request.session.username,
                                     avatar : request.session.avatar,
                                     data: data,
-                                    categorias: categorias
+                                    categorias: categorias,
+                                    search: search
                                 });
                             }
                         });

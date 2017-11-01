@@ -5,14 +5,14 @@ const connection = require('./conexion');
 class VideosModel{
 
     //metodo para obtener todos los videos con el total de votos, visitas y comentarios obtenidos
-    getAll(cb)
+    getAll(search,cb)
     {
         connection.query('SELECT v.id, v.titulo, v.descripcion, v.url, v.fecha_publicacion, v.visitas, c.descripcion categoria, '+
         '(SELECT SUM(r.votos) FROM rating r WHERE r.id_video=v.id) votos, '+
         '(SELECT COUNT(c.id) FROM comments c WHERE c.id_video=v.id) comentarios '+
         'FROM videos v '+
         'INNER JOIN categorias c ON v.id_categoria=c.id '+
-        'WHERE titulo LIKE "%%" '+
+        'WHERE titulo LIKE "%'+search+'%" '+
         'ORDER BY votos DESC, v.visitas DESC, v.id DESC', cb);
     }
 

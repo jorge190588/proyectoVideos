@@ -19,9 +19,9 @@ block content
                             button(class="btn btn-info btn-block" data-toggle="portfilter" data-target=category.descripcion) #{category.descripcion}
             div(class=['col-xs-12','col-sm-9','col-sm-pull-3'])
                 div.input-group
-                    input(type="search", class=['search'], name="search", id="search" placeholder="Buscar...")
+                    input(type="search", class=['search'], name="search", value=search, id="search" placeholder="Buscar...")
                     div.input-group-btn
-                        button(type="button" class="btn btn-default search_btn") Buscar
+                        button(type="button" name="btn_search" id="btn_search" class="btn btn-default search_btn") Buscar
                 br
                 div(class=['list-group'])
                     if(data.length != 0)

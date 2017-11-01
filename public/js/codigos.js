@@ -98,12 +98,9 @@ $(document).ready(function(){
         $(this).tab('show');
     });
 
-    $('#btn_categoria_all').on('click', function(){
-        
-    });
-
-    $('#search_str').on('click', function(){
-        var string = $('#search').val();
-        console.log(string);
+    /* metod para buscar */
+    $('#btn_search').on('click', function(){
+        var search_str = $('#search').val();
+        location.href="/inicio?search="+search_str;
     });
 });
