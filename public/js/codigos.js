@@ -11,14 +11,17 @@ $(document).ready(function(){
     $('#username, #password').keyup(enabledLogin);
 
     //para mostrar contraseña
-    $('#show_pass').mousedown(function(){
-        $('#password').removeAttr('type');
-        $('#icon_eye').addClass('glyphicon-eye-close').removeClass('glyphicon-eye-open');
-    });
-
-    $('#show_pass').mouseup(function(){
-        $('#password').attr('type','password');
-        $('#icon_eye').addClass('glyphicon-eye-open').removeClass('glyphicon-eye-close');
+    var conteo = 0;
+    $('#show_pass').on('click',function(){
+        if(conteo==0){
+            conteo = 1;
+            $('#password').removeAttr('type');
+            $('#icon_eye').addClass('glyphicon-eye-close').removeClass('glyphicon-eye-open');
+        }else{
+            conteo = 0;
+            $('#password').attr('type','password');
+            $('#icon_eye').addClass('glyphicon-eye-open').removeClass('glyphicon-eye-close');
+        } 
     });
 
     //codigo para el tooltip
