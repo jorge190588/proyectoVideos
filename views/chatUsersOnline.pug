@@ -11,9 +11,9 @@ block content
                 form(onsubmit="return sendMessage(this)")
                     div.input-group
                         input(type="hidden" id="id_auth" value=id_auth)
-                        input(type="text" id="message" class="form-control enter-message" planceholder="Escribe un mensaje...")
+                        input(type="text" id="message" class="form-control enter-message" onkeypress="return validateInputText(event)" planceholder="Escribe un mensaje...")
                         span.input-group-btn
-                            button(type="submit" class="btn btn-primary")
+                            button(type="submit" id="btn_message" class="btn btn-primary" disabled)
                                 span(class="glyphicon glyphicon-send")
                 div.chat-messages
                     div.chat
@@ -27,4 +27,26 @@ block content
             }
             $('#NicknamesUsersOnline').html(html);
         });
+        
+        //validamos las entradas del mensaje
+        function validateInputText(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = /^[A-Za-z0-9\ñ\.\)\(\:\;\s]*$/;
+            especiales = "8-37-38-32-46-164";
+            teclado_especial = false;
+            for(var i in especiales)
+            {
+                if(key==especiales[i])
+                {
+                    teclado_especial = true;
+                    break;
+                }
+            }
+            if(!caracteres.test(teclado) && !teclado_especial)
+            {
+                return false;
+            }
+        }
     include templates/footer    

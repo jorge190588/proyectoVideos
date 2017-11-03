@@ -93,7 +93,7 @@ block content
                                 input(type="hidden", id="full_name", value=full_name, name="full_name")
                                 div.form-group
                                     label(for='comment')
-                                    textarea(class='form-control', rows="3", cols="20", name="comment", id="comment")
+                                    textarea(class='form-control', onkeypress="return validateInputText(event)", rows="3", cols="20", name="comment", id="comment")
                                 div(class=['hidden-xs','col-sm-6','col-sm-offset-3'])
                                     button(type='submit', id="btnComentar" class=['btn','btn-primary','btn-block'], disabled) Comentar
                                 div(class=['hidden-lg','hidden-sm'])
@@ -118,4 +118,26 @@ block content
                                         div(class="flecha-izquierda")
                                         div.contenido #{messageData.mensaje}
                     //********************Fin de Lista de comentarios****************
+    script.
+        //validamos las entradas del comentario
+        function validateInputText(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = /^[A-Za-z0-9\ñ\.\)\(\:\;\s]*$/;
+            especiales = "8-37-38-32-46-164";
+            teclado_especial = false;
+            for(var i in especiales)
+            {
+                if(key==especiales[i])
+                {
+                    teclado_especial = true;
+                    break;
+                }
+            }
+            if(!caracteres.test(teclado) && !teclado_especial)
+            {
+                return false;
+            }
+        }
     include templates/footer

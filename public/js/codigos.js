@@ -52,9 +52,21 @@ $(document).ready(function(){
         });
     });
 
-    //funcion o metodo para comentar con ajax
+    //metodo para activar o desactivar el boton de mensajes
+    function enabledMessage(){
+        if($('#message').val().trim() != ''){
+            $('#btn_message').removeAttr('disabled');
+        }else{
+            $('#btn_message').attr('disabled','disabled');
+        }
+    }
+
+    //verificamos cada ves que se teclea en el campo del mensaje
+    $('#message').keyup(enabledMessage);
+
+    //metodo para activar o desactivar el boton de comentar
     function enabledComment(){
-        if($('#comment').val() != ''){
+        if($('#comment').val().trim() != ''){
             $('#btnComentar').removeAttr('disabled');
             $('#btnComentar_xs').removeAttr('disabled');
         }else{
