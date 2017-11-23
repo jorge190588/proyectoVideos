@@ -59,10 +59,11 @@ block content
                                                 else
                                                     span.label.label-success #{data[0].votos}
                 div(class="well")
-                    h3
-                        span.glyphicon.glyphicon-user
-                        span 
-                        strong #{data[0].name} #{data[0].last_name}
+                    a(href="/perfil/"+data[0].id class="btn btn-link")
+                        h3
+                            span.glyphicon.glyphicon-user
+                            span 
+                            strong #{data[0].name} #{data[0].last_name}
                     h5
                         span.glyphicon.glyphicon-time
                         span 
@@ -115,7 +116,7 @@ block content
                                                 span.text-primary #{`${messageData.user_name} ${messageData.user_lastName}`} 
                                                 span - 
                                                 span= moment(messageData.fecha).fromNow()
-                                        div(class="flecha-izquierda")
+                                        //div(class="flecha-izquierda")
                                         div.contenido #{messageData.mensaje}
                     //********************Fin de Lista de comentarios****************
     script.

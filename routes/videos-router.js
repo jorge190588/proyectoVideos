@@ -13,6 +13,7 @@ router
     .post('/eliminar/:id', videosController.delete)
     .get('/detalles/:id', videosController.getDetails)
     .get('/perfil', videosController.getProfile)
+    .get('/perfil/:idUser', videosController.getProfileUser)
     .post('/calificar', videosController.calificarVideo)
     .post('/comentar', videosController.comentarVideo)
     .post('/upload_avatar', videosController.uploadAvatar)

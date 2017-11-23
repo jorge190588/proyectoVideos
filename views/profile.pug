@@ -67,10 +67,10 @@ block content
                                                 hr
                                                 p #{video.descripcion}
                                             div(class=["panel-footer"])
-                                                form(method="post", class="form-inline", action="/eliminar/" + video.id)
-                                                    a(class=['btn','btn-primary','btn-sm'], href="/editar/" + video.id) Editar
-                                                    span 
-                                                    input(type="button", class=['btn','btn-danger','btn-sm'], value="Eliminar", onclick="eliminar(this)")
+                                                //form(method="post", class="form-inline", action="/eliminar/" + video.id)
+                                                a(class=['btn','btn-info','btn-block'], href="/editar/" + video.id) Editar
+                                                    //span 
+                                                    //input(type="button", class=['btn','btn-danger','btn-sm'], value="Eliminar", onclick="eliminar(this)")
                             else
                                 div(role="alert").alert.alert-info No hay datos que mostrar
                     div(class=['tab-pane','fade'], id="notificaciones")

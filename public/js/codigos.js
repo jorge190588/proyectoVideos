@@ -34,8 +34,6 @@ $(document).ready(function(){
             id_video : $('#id_video').val(),
             votos : this.value
         };
-
-        console.log(datos);
         
         $.ajax({
             data: datos,

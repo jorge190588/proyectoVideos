@@ -156,6 +156,28 @@ class VideosController{
             :   errors.http401(request, response, next);
     }
 
+    getProfileUser(request, response, next){
+        let id_auth = request.params.idUser;
+        return (request.session.username)
+            ?   videosModel.getAllVideosByUserDetails(id_auth, (error, data) => {
+                    if(!error){
+                        authModel.getOneUser(id_auth,(error, user)=>{
+                            if(!error){
+                                response.render('profileUser',{
+                                    title: 'Perfil - Actividad',
+                                    user: request.session.username,
+                                    avatar : request.session.avatar,
+                                    data_user: user,
+                                    data: data,
+                                    error_image: request.query.error_image
+                                });
+                            }
+                        })
+                    }
+                })
+            :   errors.http401(request, response, next);
+    }
+
     uploadAvatar(request, response, next){
         let formidable = require('formidable');
         var form = new formidable.IncomingForm();
@@ -180,7 +202,11 @@ class VideosController{
 
     save(request, response, next){
         let ID_youtube;
-        ID_youtube = request.body.urlVideo.split('=').pop();        
+        if(request.body.urlVideo.split('=').length != 1){
+            ID_youtube = request.body.urlVideo.split('=')[1].split('&')[0];
+        }else{
+            ID_youtube = request.body.urlVideo.split('/').pop();
+        }
         let video = {
             id : parseInt((request.body.id || 0)),
             titulo : request.body.titulo,
@@ -188,7 +214,7 @@ class VideosController{
             url : ID_youtube,
             id_auth : parseInt(request.body.id_auth),
             id_categoria : parseInt(request.body.categoria)
-        };
+        };        
         return (request.session.username)
             ?   videosModel.save(video, (error) => {
                     if(!error){
