@@ -21,8 +21,8 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers binutils-gold gnup
       8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600 \
       C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
       DD8F2338BAE7501E3DD5AC78C273792F7D83545D && break; \
-  done && \
-  curl -sfSLO https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.xz && \
+  done 
+RUN  curl -sfSLO https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.xz && \
   curl -sfSL https://nodejs.org/dist/${VERSION}/SHASUMS256.txt.asc | gpg --batch --decrypt | \
     grep " node-${VERSION}.tar.xz\$" | sha256sum -c | grep ': OK$' && \
   tar -xf node-${VERSION}.tar.xz && \
