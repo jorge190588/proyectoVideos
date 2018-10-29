@@ -1,8 +1,22 @@
 version: "3"
 services:
+  mysql:
+    build: 
+      context: .
+      dockerfile: Dockerfilemysql.dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=ranking_videos
+      - MYSQL_USER=tony
+      - MYSQL_PASSWORD=dpa\*12d
+      - MYSQL_ROOT_PASSWORD=web
+
   nodejs:
     build: .
     volumes:
       - .:/web
     ports:
-      - "3000:3000"
+      - "8080:8080"
+  
+# create only the mysql image docker build -t jsantos/alpine-mysql -f ./Dockerfilemysql.dockerfile .      

@@ -21,7 +21,10 @@ npm start
 ## Herramientas Utilizadas
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Nodemon](https://www.npmjs.com/package/nodemon)
-* [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+* [Mysql Workbench](http://www.mediafire.com/file/ilhktyaidy0a2i3/MySQL+Workbench+5.2.47+Portable.by.kenet9911.rar)
+* [Mysql young](https://www.youtube.com/watch?v=CcgpekWeI6E)
+* [Alpine con Nodejs](https://github.com/nodejs/docker-node/blob/45fa3ebe94598758b9c9e4a382236fc7e879e2e6/10/slim/Dockerfile)
+
 
 ## Errores
  
@@ -59,3 +62,6 @@ mkdir -p /etc/docker/certs.d && cp certs/certificate.pem /etc/docker/certs.d
 * Reiniciar la maquina virtual con la sentencia "docker-machine restart defaul"
 
 Referencia: [stackoverflow](https://stackoverflow.com/questions/31205438/docker-on-windows-boot2docker-certificate-signed-by-unknown-authority-error)
+
+
+* [nodejs "npm ERR! code SELF_SIGNED_CERT_IN_CHAIN"](https://stackoverflow.com/questions/29141153/nodejs-npm-err-code-self-signed-cert-in-chain)
