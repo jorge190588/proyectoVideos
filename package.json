@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "startDev": "nodemon app.js",
-    "startProd": "nodemon app.js"
+    "startProd": "node app.js"
   },
   "author": "Elvin Morales <elvinmorales48@gmail.com>",
   "license": "MIT",

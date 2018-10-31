@@ -1,4 +1,4 @@
-# Ranking de Videos
+# Plataforma de e-learning
 Un sistema de votación de videos el cual clasifica los videos subidos por los usuarios registrados.
 
 ## Instalar Dependencias

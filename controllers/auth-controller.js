@@ -55,6 +55,8 @@ class AuthController{
                 }else{                    
                     response.redirect('/?error=Error en la autenticación verifique sus datos');
                 }
+            }else{
+                response.redirect('/?error=Error '+error);
             }
         });
     }

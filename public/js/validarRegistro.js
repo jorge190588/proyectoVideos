@@ -31,7 +31,7 @@ function validarRegistro()
     var alerta_email = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>El correo electrónico no es válido!</strong></div>';
 
     //VALIDAMOS EL EMAIL PARA QUE SEA DEL TIPO usuairo@miumg.edu.gt
-    if(email != '')
+    /*if(email != '')
     {
         var expresion_regular = /^\w+([\.-]?\w+)*@[miumg]{5}\.[edu]{3}\.[gt]{2}$/;
         if(!expresion_regular.test(email)){
@@ -40,7 +40,7 @@ function validarRegistro()
         }else{
             $('#msg_error_email').fadeIn("slow").html('');
         }
-    }
+    }*/
     
     //VALIDAMOS EL PASSWORD
     if(password != '' || confirm_password != '')
