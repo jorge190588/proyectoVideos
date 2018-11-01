@@ -66,15 +66,22 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
-#RUN mkdir web
-COPY . /.
+RUN mkdir app
+COPY app /app
+WORKDIR /app
+RUN npm install
+
+#RUN npm run startProd
+#RUN npm -prefix /web install /web
+#ENTRYPOINT npm --prefix /web run startProd
+
 #WORKDIR /web
 #RUN apt-get --update nodejs nodejs-npm
 #RUN npm set strict-ssl false
-RUN npm install
+
 #RUN echo fs.inotify.max_user_watches=582222 | tee -a /etc/sysctl.conf && sysctl -p
 #RUN npm install font-awesome --save
-ENTRYPOINT npm run startProd
+
 #CMD ["npm", "start" ]
 #ENTRYPOINT npm start
 # CMD [ "npm", "run", "start" ]

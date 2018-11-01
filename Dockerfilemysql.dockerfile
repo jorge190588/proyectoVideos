@@ -3,10 +3,10 @@ FROM alpine:3.7
 
 WORKDIR /app
 VOLUME /app
-COPY startup.sh /startup.sh
+COPY bd/startup.sh /startup.sh
 
 RUN apk add --update mysql mysql-client && rm -f /var/cache/apk/*
-COPY my.cnf /etc/mysql/my.cnf
+COPY bd/my.cnf /etc/mysql/my.cnf
 
 EXPOSE 3306
 CMD ["/startup.sh"]

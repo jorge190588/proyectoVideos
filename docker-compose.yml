@@ -14,9 +14,16 @@ services:
 
   nodejs:
     build: .
-    volumes:
-      - .:/web
     ports:
       - "8080:8080"
-  
+    working_dir: /app
+    command: >
+      bash -c "npm run startProd"
+    #volumes:
+    #  - ./app_online:/app
+
+#volumes:
+#  app_online:
+
+#bash -c "npm -prefix /web install /web && npm --prefix /web run startProd"
 # create only the mysql image docker build -t jsantos/alpine-mysql -f ./Dockerfilemysql.dockerfile .      
