@@ -9,7 +9,7 @@ RUN apk add --update mysql mysql-client && rm -f /var/cache/apk/*
 COPY bd/my.cnf /etc/mysql/my.cnf
 
 EXPOSE 3306
-CMD ["/startup.sh"]
+CMD  ["/startup.sh"]
 
 # https://github.com/wangxian/alpine-mysql
 # https://docs.docker.com/samples/library/mysql/#docker-secrets

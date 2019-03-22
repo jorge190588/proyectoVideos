@@ -38,8 +38,8 @@ RUN buildDeps='xz-utils' \
     && set -x \
     && apt-get update && apt-get install -y ca-certificates curl wget $buildDeps --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz"  \
-    && curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc"  \
+    && curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
+    && curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
     && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
     && grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
     && tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
@@ -71,6 +71,9 @@ COPY app /app
 WORKDIR /app
 RUN npm install
 
+RUN apt update 
+RUN apt install mysql-client -y
+
 #RUN npm run startProd
 #RUN npm -prefix /web install /web
 #ENTRYPOINT npm --prefix /web run startProd
@@ -86,3 +89,4 @@ RUN npm install
 #ENTRYPOINT npm start
 # CMD [ "npm", "run", "start" ]
 
+# https://raw.githubusercontent.com/nodejs/docker-node/master/10/slim/Dockerfile

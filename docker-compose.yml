@@ -1,9 +1,28 @@
 version: "3"
 services:
+  nodejs:
+    container_name: videos_nodejs
+    build: .
+    ports:
+      - "8080:8080"
+    working_dir: /app
+    #command: > bash -c "npm run startProd"
+    depends_on:
+      - "mysql"
+    command: > 
+      bash -c "bash /app/wait-for-it.sh; npm run startProd;"
+    networks:
+      - socatnet
+  
   mysql:
+    container_name: videos_mysql
     build: 
       context: .
       dockerfile: Dockerfilemysql.dockerfile
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=web --execute \"SHOW DATABASES;\""
+      timeout: 20s
+      retries: 10
     ports:
       - "3306:3306"
     environment:
@@ -11,14 +30,11 @@ services:
       - MYSQL_USER=tony
       - MYSQL_PASSWORD=dpa\*12d
       - MYSQL_ROOT_PASSWORD=web
+    networks:
+      - socatnet
 
-  nodejs:
-    build: .
-    ports:
-      - "8080:8080"
-    working_dir: /app
-    command: >
-      bash -c "npm run startProd"
+networks:
+  socatnet:
     #volumes:
     #  - ./app_online:/app
 

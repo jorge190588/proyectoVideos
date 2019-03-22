@@ -24,6 +24,8 @@ npm start
 * [Mysql Workbench](http://www.mediafire.com/file/ilhktyaidy0a2i3/MySQL+Workbench+5.2.47+Portable.by.kenet9911.rar)
 * [Mysql young](https://www.youtube.com/watch?v=CcgpekWeI6E)
 * [Alpine con Nodejs](https://github.com/nodejs/docker-node/blob/45fa3ebe94598758b9c9e4a382236fc7e879e2e6/10/slim/Dockerfile)
+* [Instalar Git en CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-centos-7)
+* [Instalar docker-compose en CentOS -Step 2 — Installing Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-centos-7)
 
 
 ## Errores
