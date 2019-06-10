@@ -69,7 +69,7 @@ RUN set -ex \
 RUN mkdir app
 COPY app /app
 WORKDIR /app
-RUN npm install
+RUN npm install -g
 
 RUN apt update 
 RUN apt install mysql-client -y

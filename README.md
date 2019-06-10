@@ -29,7 +29,15 @@ npm start
 
 
 ## Errores
- 
+
+### standard_init_linux.go:178: exec user process caused "no such file or directory"
+
+git config --global core.eol lf
+git config --global core.autocrlf input
+find . -type f -print0 | xargs -0 dos2unix
+
+ * [standard_init_linux.go:178: exec user process caused "no such file or directory"](https://github.com/docker/labs/issues/215#issuecomment-357206945)
+
 ### Raw-mode is unavailable courtesy of Hyper-V. (VERR_SUPDRV_NO_RAW_MODE_HYPER_V_ROOT)
  
 * Desactivar hyper-v en panel de control, Sistema y seguridad, Programas, activar o desactivar las caracteristicas de windows
